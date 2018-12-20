@@ -1,0 +1,114 @@
+<div>
+	{%with msg=get_flashed_messages()%}
+		{%if msg%}
+			<h3 class="done">{{msg[0]}}</h3>
+		{%endif%}
+	{%endwith%}
+	<form method="POST" enctype="multipart/form-data">
+		<fieldset class="import_export">
+			<legend>تصدير/استيراد</legend>
+			<table>
+				<tr>
+					<td>
+						<input id="export_sql" type="submit" value="تصدير SQL">
+					</td>
+					<td>
+						<input id="export_html" type="submit" value="تصدير HTMl">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>استيراد SQL</label>
+					</td>
+					<td>
+						<input name="import_file" id="import" type="file" value="استيراد SQL" data-button-text="fdfds" accept=".sql">
+					</td>
+					<td>
+						<input id="execute" type="submit" value="تنفيذ">
+					</td>
+					<td>سيتم الاستبدال مع قاعدة البيانات الحالية</td>
+				</tr>
+				<tr>	
+					<td>
+						<input id="destroy" type="submit" Value="تدمير قاعدة البيانات">
+					</td>
+				</tr>
+			</table>
+		</fieldset>
+		<fieldset hidden>
+			<legend>اعدادت الاتصال</legend>
+			<input name="radio_config" type="radio" checked>
+			<label>قاعدة البيانات الافتراضية</label>
+			<input name="radio_config" type="radio">
+			<label>خادم اخر</label>
+			<br>
+			<div class="server_config_input" id="server_config" hidden>
+				<table>
+					<tr>
+						<td>
+							<label>الخادم</label>
+						</td>
+						<td>
+							<input name="host" type="text">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>المنفذ</label>
+						</td>
+						<td>
+							<input name="port" type="text">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>اسم المستخدم</label>
+						</td>
+						<td>
+							<input name="user" type="text">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>كلمة المرور</label>
+						</td>
+						<td>
+							<input name="password" type="password">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>قاعدة البيانات</label>
+						</td>
+						<td>
+							<input name="database" type="text">
+						</td>
+					</tr>
+				</table>
+			</div>
+				<input type="submit" value="حفظ">
+		</fieldset>
+		<fieldset>
+			<legend>معلومات التطبيق</legend>
+			<table>
+				<tr>
+					<td>الاصدار</td>
+					<td>0.1</td>
+				</tr>
+				<tr>
+					<td>تاريخ الاصدار</td>
+					<td>18/12/2018</td>
+				</tr>
+				<tr>
+					<td>الرخصة</td>
+					<td><a href="https://raw.githubusercontent.com/khaledfathi/ayman_application/master/LICENSE" target="_blank">GPL 3</a></td>
+				</tr>
+				<tr>
+					<td>Souce Code</td>
+					<td><a href="https://github.com/khaledfathi/ayman_application" target="_blank">GitHub</a></td>
+				</tr>
+			</table>
+		</fieldset>
+		<input id= "action_type" name="action_type" type="text" hidden>
+	</form>
+</div>
