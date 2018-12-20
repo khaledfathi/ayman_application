@@ -1,0 +1,137 @@
+{%if error%}
+	<h3 class="error_message"> {{error}}</h3>
+{%endif%}
+{%with msg=get_flashed_messages()%}
+	{%if msg%}
+		<h3 class="save_done" >{{msg[0]}}</h3>
+	{%endif%}
+{%endwith%}
+<div class="main_form">
+	<form method="POST" > 
+		<fieldset>
+			<legend>بيانات العميل</legend>
+			<table class="customer_data_table">
+				<tr>
+					<td>
+						<label>ID <span class="require">*</span></label>
+					</td>
+					<td>
+						<input  type="text" disabled placeholder="Auto Number" value={{new_id}} >
+					</td>
+					<td>
+						<label>الاسم <span class="require">*</span></label>
+					</td>
+					<td>
+						<input name="name" type="text" required title="ادخل الاسم">
+					</td>
+					<td>
+						<label>التليفون <span class="require">*</span></label>
+
+					</td>
+					<td>
+						<input name="phone" type="text" required title="ادخل رقم التليفون" placeholder="01234567789">
+					</td>
+				<tr>
+
+				<tr>
+					<td>
+						<label>عنوان</label>
+					</td>
+					<td>
+						<input name="address" type="text" title="ادخل العنوان" placeholder="العنوان + اسم المنطقة">
+					</td>
+					<td>
+						<label>محافظة</label>
+					</td>
+					<td>
+						<select name="cities" id="cities" class="select_cities" title="اختر المحافظة">
+							<option>الإسكندرية</option>
+							<option>الإسماعيلية</option>
+							<option>أسوان</option>
+							<option>أسيوط</option>
+							<option>الأقصر</option>
+							<option>البحر الأحمر</option>
+							<option>الغردقة</option>
+							<option>البحيرة</option>
+							<option>دمنهور</option>
+							<option>بني سويف</option>
+							<option>بورسعيد</option>
+							<option>الطور</option>
+							<option>جنوب سيناء</option>
+							<option>الجيزة</option>
+							<option>المنصورة</option>
+							<option>الدقهلية</option>
+							<option>دمياط</option>
+							<option>سوهاج</option>
+							<option>السويس</option>
+							<option>الزقازيق</option>
+							<option>الشرقية</option>
+							<option>العريش</option>
+							<option>شمال سيناء</option>
+							<option>طنطا</option>
+							<option>الغربية</option>
+							<option>الفيوم</option>
+							<option selected>القاهرة</option>
+							<option>بنها</option>
+							<option>القليوبية</option>
+							<option>قنا</option>
+							<option>كفر الشيخ</option>
+							<option>مرسى مطروح</option>
+							<option>مطروح</option>
+							<option>شبين الكوم</option>
+							<option>المنوفية</option>
+							<option>المنيا</option>
+							<option>الوادي الجديد</option>
+							<option>الخارجة</option>
+							<option>--اخرى--</option>
+						</select>
+					</td>
+					<td>
+						<label id="label_other_city" hidden>محافظة اخرى</label>
+					</td>
+					<td>
+						<input name="other_city" id="other_city" type="text" hidden title="ادخل محافظة غير موجودة بقائمة المحافظات">
+					</td>
+				<tr>
+		</table>
+		</fieldset>
+		<fieldset >
+			<legend>بيانات الطلب</legend>
+			<label>نوع المنتج</label>
+			<input name="product_type" type="text" title ="ادخل نوع المنتج">
+			<label> رابط المنتج</label>
+			<input name = "product_link" type="url" title ="ادخل رابط المنتج"  placeholder="https:// or https://">
+			<fieldset class="fieldset_pic">
+				<legend>صورة المنتج</legend>
+				<input name="pic" type="radio" value= "pic" hidden>
+				<label hidden>صورة</label>
+				<input name="pic" type="radio" value="link" checked="checked">
+				<label>رابط</label>
+				
+				<input name="pic_file" id="pic_file" type="file" hidden>
+				<input name="pic_url" id="pic_url"  type="url" title="صورة المنتج - يجب ان تبدأ " placeholder="https:// or https://">
+				<img id="product_image" height="150" width="150">
+			</fieldset>
+			<hr style="margin:20px 0px">
+			<label>تاريخ الطلب <span class="require" >*</span></label>
+			<input name="request_date" type="date" required title="ادخل تاريخ الطلب">
+			<label>تاريخ التسليم <span class="require">*</span></label>
+			<input name="end_date" type="date" required title="ادخل تاريخ التسليم">
+			<label>البريد الالكترونى <span class="require">*</span></label>
+			<input name="email" type="email" required title="ادخل البريد الالكترونى " placeholder="mail@domain.com">
+			<label>كلمة السر - سوق <span class="require">*</span></label>
+			<input name="souq_password" type="text" required title="ادخل كلمة سر - سوق" required>
+			<label>حالة التسليم</label>
+			<select name="request_status" title ="اختر حالة التسليم">
+				<option>تم التسليم</option>
+				<option selected>متابعة</option>
+			</select>
+			<br>
+			<label>ملاحظات</label>
+			<input name="notes" class="notes"  type="text" title ="ادخل اى ملاحظات او تفاصيل اخرى">
+		</fieldset>
+		<input id="save_button" class="submit_button" type="submit" value="حفظ البيانات">
+		<img id="loading_image" class="loading_pic" src="static/images/loading.gif" hidden>
+	</form>
+	<button id="clear_button" class="clear">تفريغ الخانات</button>
+</div>
