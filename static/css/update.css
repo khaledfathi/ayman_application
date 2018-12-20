@@ -1,0 +1,89 @@
+/*div*/
+.main_form{
+	position : relative;
+	margin:0px auto;   
+	width:1300px;
+}
+/*********/
+
+/*all fieldset*/
+fieldset{
+	margin:10px 0px;
+	padding:20px;
+	background-color:#e6d6b2;
+	border:2px solid black;
+}
+legend{
+	font-weight:bold;
+}
+.fieldset_pic{
+ display:inline;
+}
+.fieldset_pic img{
+	border:1px solid black;
+}
+.notes{
+	width:750px;
+	margin :10px 0px;
+}
+/**************/
+
+/*customer data part*/
+.customer_data_table td{
+	padding :5px;
+}
+.select_cities{
+	width:170px;
+}
+/***************/
+/*require " * " color to red */
+.require{
+	color:red;
+}
+/*buttons*/
+.submit_button{
+	background-color:green;
+	color:white;
+	box-shadow:2px 2px 3px black;
+	font-weight:bold;
+	width:150px;
+	height:100px;
+	margin : 20px 0px ;
+	text-shadow:2px 2px 2px black;
+	box-shadow:0px 0px 5px 5px gray;
+}
+.clear{
+	background-color:red;
+	color:white;
+	font-weight:bold;
+	box-shadow:2px 2px 3px black;
+	position : absolute;
+	width:150px;
+	height:100px;
+	left:10px;
+	bottom : 20px;
+	text-shadow:2px 2px 2px black;
+	box-shadow:0px 0px 5px 5px gray;
+}
+/*********/
+/*loading pic*/
+.loading_pic{
+	position:absolute;
+	right:550px;
+}
+/*************/
+
+/*save or error message*/
+.save_done{
+	background-color:forestgreen;
+	padding:5px;
+	text-align: center;
+	text-shadow:2px 2px 2px white;
+}
+.error_message{
+	background-color:red;
+	padding :5px;
+	text-align: center;
+	text-shadow:2px 2px 2px white;
+}
+/******************/

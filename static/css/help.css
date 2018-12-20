@@ -1,0 +1,28 @@
+/*main navigator*/
+.h{
+	background-color:#baffff !important;
+	color:black !important;
+	text-shadow:;2px 2px 2px #b46fb1 !important;
+}
+/************/
+
+/*tabel for import and export fieldset*/
+.import_export td{
+	padding:10px 0px 5px 10px;
+}
+/*************/
+
+/*tabel server config*/
+.server_config td{
+	margin:10px 0px 10px 10px;
+}
+
+/****************/
+/*error message*/
+.done{
+	background-color:green;
+	padding :5px;
+	text-align: center;
+	text-shadow:2px 2px 2px white;
+}
+/******************/

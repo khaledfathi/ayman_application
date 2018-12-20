@@ -1,0 +1,54 @@
+/*global rules*/
+body{
+	margin:0px;
+	padding : 0px;
+}
+a{
+	text-decoration:none;
+}
+/*********/
+
+/*header*/
+header {
+	background-color:#af9fcc;
+	padding:1px;
+	height:100px;
+	box-shadow:0px 5px 10px black;
+}
+.header_title h1{
+	text-align:center;
+	color:white;
+	text-shadow:2px 2px 5px black;
+}
+/********/
+
+.man_nav{
+	position:relative;
+	width:1300px;
+	margin:0px auto;
+}
+.man_nav ul{
+	margin:40px auto;
+	list-style:none;
+}
+.man_nav ul li {
+	display:inline;
+	border-radius:10px;
+	font-size:20px;
+	padding:10px 20px;
+	margin-left:20px;
+	text-shadow:2px 2px 2px black;
+	background-color:#aa7f7f;
+	color:white;
+	box-shadow:5px 5px 5px black
+}
+.man_nav ul li:hover{
+	box-shadow:2px 2px 2px red;
+}
+.fb_logo{
+	height:70px;
+	width:70px;
+	position:absolute;
+	left:20px;
+	top:-20px;
+}

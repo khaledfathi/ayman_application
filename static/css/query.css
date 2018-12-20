@@ -1,0 +1,88 @@
+/*general ruels*/
+a{
+	text-decoration:none;
+	color: black;
+}
+/**************/
+/*main navigator*/
+.q{
+	background-color:#baffff !important;
+	color:black !important;
+	text-shadow:;2px 2px 2px #b46fb1 !important;
+}
+/***************/
+
+
+/*search setting area*/
+.search {
+	width :900px;
+	margin : 50px auto;
+	text-align:center;
+}
+.search td{
+padding:15px;
+}
+.search_input{
+	width:900px;
+	margin:30px 0px;
+}
+.search_input input[type="submit"]{
+	font-weight:bold;
+	height:40px;
+	box-shadow:0px 0px 10px 5px gray;
+}
+.search_field{
+	width:300px;
+	height:30px;
+	box-shadow:0px 0px 5px 5px gray;
+	margin:0px 20px;
+}
+.from_to_search{
+	width:150px;
+	height:40px;
+	margin :0px 10px;
+	box-shadow:0px 0px 5px 5px gray;
+}
+/*********************/
+/*result table*/
+.result_table{
+	border:5px solid black;
+	border-collapse:collapse;
+	margin :10px auto;
+	box-shadow: 0px 0px 10px 5px gray;
+}
+.result_table td{
+	border:3px solid black;
+	padding :5px;
+	text-align: center;
+}
+.result_table tr:hover{
+	background-color:#b5b9ea;	
+}
+.edit_res{
+	cursor:pointer;
+}
+.edit_res:hover{
+	background-color:red;
+	color:white;
+}
+/*************/
+
+/*del button submit*/
+.del_button_submit{
+	background-color:red;
+	color:white;
+	box-shadow: 0px 0px 5px 5px gray;
+	font-size:20px;
+	padding :30px;
+	margin :20px 50px 20px 0px;
+}
+/*****************/
+
+.done{
+	background-color:forestgreen;
+	padding:5px;
+	text-align: center;
+	text-shadow:2px 2px 2px white;
+}
+/*****************/
