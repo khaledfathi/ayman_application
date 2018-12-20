@@ -1,0 +1,114 @@
+{%with msg=get_flashed_messages()%}
+{%if msg%}
+	<h3 class="done">{{msg[0]}}</h3>
+{%endif%}
+{%endwith%}
+<div class="search">
+	<form method="GET">
+		<table>
+			<tr>
+				<td>
+					<label >بحث بـ</label>
+					<select name="by_name" id="main_search">
+						<option>ID</option>
+						<option selected>الاسم</option>
+						<option>العنوان</option>
+						<option>التليفون</option>
+						<option>المحافظة</option>
+						<option>نوع المنتج</option>
+						<option>تاريخ الطلب</option>
+						<option>تاريخ التسليم</option>
+						<option>البريد الالكترونى</option>
+						<option>الملاحظات</option>
+					</select>
+					<input id="pattern" name="pattern_selected" type="text" value="pattern_2" hidden>
+				</td>
+				<td>
+					<label >نمط البحث</label>
+					<select name="pattern_1" id="pattern_1" hidden>
+						<option selected>يساوى</option>
+						<option >اكبر من </option>
+						<option >اكبر من او يساوى</option>
+						<option >اصغر من</option>
+						<option >اصغر من او يساوى </option>
+						<option >ما بين </option>
+					</select>
+					<select name="pattern_2" id="pattern_2">
+						<option selected>يحتوى على</option>
+						<option>يبدأ بـ</option>
+						<option>ينتهى بـ</option>
+						<option>متطابق</option>
+					</select>
+					<select name="pattern_3" id="pattern_3" hidden>
+						<option selected>فى يوم</option>
+						<option >ما قبل</option>
+						<option >ما بعد</option>
+						<option >الفترة من/الى</option>
+					</select>
+				</td>
+				<td>
+					<label >ترتيب بـ</label>
+					<select name="order_by" id="order">
+						<option>ID</option>
+						<option selected>الاسم</option>
+						<option>العنوان</option>
+						<option>المحافظة</option>
+						<option>التليفون</option>
+						<option>نوع المنتج</option>
+						<option>تاريخ الطلب</option>
+						<option>تاريخ التسليم</option>
+						<option>البريد الالكترونى</option>
+						<option>الملاحظات</option>
+					</select>
+				</td>
+				<td>
+					<label >نمط الترتيب</label>
+					<select name="az_za" id="az_za">
+						<option selected>تصاعدى</option>
+						<option>تنازلى</option>
+					</select>
+				</td>
+			<tr>
+		</table>	
+		<div class="search_input">
+			<input name="search" class="search_field" id="search_field" type="text">
+			<label id="label_from" hidden>من</label>
+			<input name="search_from" class="from_to_search" id="from" type="text" hidden>
+			<label id="label_to" hidden>الى</label>
+			<input name="search_to" class="from_to_search" id="to" type="text" hidden>
+			<input type="submit" value="استعلام">
+			<p style="font-size:11px;">لعرض الكل *all*</p>
+		</div>
+	</form>
+</div>
+{%if nothing%} <h3>{{nothing}}</h3>{%endif%}
+{%if query%}
+	<form method="GET">
+		<table class="result_table" >
+			<tr>
+				<td>ID</td>
+				<td>الاسم</td>
+				<td>العنوان</td>
+				<td>التليفون</td>
+				<td>المحافظة</td>
+				<td>نوع المنتج</td>
+				<td>رابط المنتج</td>
+				<td>صورة</td>
+				<td>رابط صورة</td>
+				<td>تاريخ الطلب</td>
+				<td>تاريخ التسليم</td>
+				<td>البريد الالكترونى</td>
+				<td>كلمة السر - سوق</td>
+				<td>حالة الطلب</td>
+				<td>ملاحظات</td>
+				<td>للتعديل</td>
+				<td>للحذف</td>
+				<td>تحديد</td>
+			</tr>
+			{{query|safe}}
+		</table>
+		<input type="text" name="update_delete_status" hidden>
+		<input type="text" name="update_delete_id" hidden>
+		<input class="del_button_submit" id="del_button_submit" type ="submit" value="حذف المحدد">
+	</form>
+{%endif%}
