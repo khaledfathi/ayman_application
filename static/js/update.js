@@ -52,45 +52,39 @@ cities.onchange = function (){
 
 //variable needed
 var loading_image = document.getElementById("loading_image"),
-	save_button=document.getElementById("save_button"),
-	clear_button = document.getElementById("clear_button");
+	edit_button=document.getElementById("edit_button"),
+	del_button = document.getElementById("del_button");
 
-//show loading image while page loading after press on save_button
-save_button.onfocus = function (){
+//show loading image while page loading after press on edit_button
+edit_button.onfocus = function (){
 	loading_image.removeAttribute("hidden")
 };
-save_button.onblur = function (){
+edit_button.onblur = function (){
 	loading_image.setAttribute("hidden","")
 };
 
-//show loading image while page loading after press on clear_button
-clear_button.onfocus = function (){
+//show loading image while page loading after press on del_button
+del_button.onfocus = function (){
 	loading_image.removeAttribute("hidden")
 };
-clear_button.onblur = function (){
+del_button.onblur = function (){
 	loading_image.setAttribute("hidden","")
 };
 
 /*#######################################################*/
 //variable needed
-input_tags=document.getElementsByTagName("input");
+var delete_on = document.getElementById("delete_on");
 
-//clear all inputs in form 
-clear_button.onclick = function (){
-	input_tags[1].value="";	
-	input_tags[2].value="";	
-	input_tags[3].value="";	
-	input_tags[5].value="";	
-	input_tags[6].value="";	
-	input_tags[10].value="";	
-	input_tags[11].value="";	
-	input_tags[12].value="";	
-	input_tags[13].value="";	
-	input_tags[14].value="";	
-	loading_image.setAttribute("hidden","")
-}
+del_button.onclick = function (){
+	delete_on.value= "DELETE"
+};
+
+
+//prepare request to delete the current database tabel  row
+/***************************/
 
 /*#######################################################*/
+
 //varibale needed
 var product_image = document.getElementById("product_image")
 //show pic in form , and convert link to html image tage with this link
