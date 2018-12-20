@@ -1,0 +1,35 @@
+<html dir="rtl">
+	<head>
+		<meta charset="utf-8">
+		<title>Ayman - تدمير قاعدة البيانات</title>
+		<style>
+			body{
+				background-color : red;
+				text-align :center;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<h1>تحذير : سيتم تدمير قاعدة البيانات</h1>
+		<h2>ستيم حذف جميع السجلات - لن تتمكن من الرجوع عن تلك الخطوة</h2>
+		<h3>اكتب العبارة التالية للتأكيد  <strong>i know what i do</strong></h3>
+		<form method="GET">
+			<input id="confirm_destroy" name="confirm_destroy" type="text">
+			<input id="send" type="submit" value="تنفيذ" disabled>
+			<br>
+			<a href="help"><h3>الغاء و عودة</h3></a>
+		</form>
+	<script>
+		var send = document.getElementById("send"),
+			confirm_destroy = document.getElementById("confirm_destroy");
+			confirm_destroy.onkeyup = function (){
+				if (confirm_destroy.value=="i know what i do"){
+					send.removeAttribute("disabled")
+				}else{
+					send.setAttribute("disabled","")
+				};		
+			};
+	</script>
+	</body>
+</html>
