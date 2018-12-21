@@ -1,0 +1,27 @@
+###################
+# database config #
+###################
+#
+#host
+127.0.0.1
+#
+#port
+3306
+#
+#user
+root
+#
+#password
+command
+#
+#database
+ayman
+#
+####################
+#      Paths       #
+####################
+#
+#main path (free line mean the general path for flask project [change only in server] )
+
+#
+####################

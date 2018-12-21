@@ -11,7 +11,7 @@ from flask import Flask , render_template , url_for,request,redirect,flash,send_
 from werkzeug.utils  import secure_filename
 import actions
 
-UPLOAD_FOLDER="static/upload_files"
+UPLOAD_FOLDER=actions.main_path+"static/upload_files/"
 
 app=Flask(__name__)
 app.secret_key=b'60\8\f7\6f\f6\df\b9\5a\da\86\44\7c\f8\bd\15\98'
@@ -103,7 +103,7 @@ def help():
             data[i]=get_this
         if data["action_type"]=="EXPORT_SQL":
             actions.db_backup()
-            return send_file("back_up.sql",as_attachment=True,attachment_filename="Backup_sql.sql")
+            return send_file("Backup_SQL.sql",as_attachment=True,attachment_filename="Backup_sql.sql")
         elif data["action_type"]=="EXPORT_HTML":
             actions.html_export()
             return send_file("export_html.html",as_attachment=True,attachment_filename="backup_html.html")
@@ -115,7 +115,7 @@ def help():
             f=request.files['import_file']
             if actions.extenstion_allowed(f.filename,ALLOWD_EXTENTIONS):
                 f.save(path.join(app.config["UPLOAD_FOLDER"],secure_filename(f.filename)))
-                actions.restore_database('static/upload_files/'+f.filename)
+                actions.restore_database(UPLOAD_FOLDER + secure_filename(f.filename))
                 flash("تم استعادة قاعدة البيانات بنجاح")
                 return redirect(url_for('help'))
             else:
@@ -126,8 +126,7 @@ def help():
     destroy_db= request.args.get("confirm_destroy")
     if destroy_db:
         actions.destroy_database()
-        actions.restore_database('MySQL/destroy_and_create.sql')
-        print (destroy_db)
+        actions.create_empty_table()
         flash ('تم حذف جميع السجلات ')
         return redirect(url_for("help"))
 

@@ -23,6 +23,7 @@ def get_numbers(string_form):
             txt=""
     return res
 
+
 ######################################
 ############## CLASSES ###############
 ######################################
@@ -74,8 +75,11 @@ class database_actions :
         cur.close()
         db.close()
 
-#inser database config file into database class 
-database=database_actions('db_config.txt')
+#inser database config file into database class
+#CAUTION ** the path of this file name must be define before use it in server ** 
+database=database_actions('config.txt')
+#main path to determine main project folder (! IMPORTANT WHEN APP RUN ON SERVER )
+main_path=database.config()[5]
 
 ###################################
 ######## for insert new data ######
@@ -437,11 +441,25 @@ def update(data_list):
 #names of html elements - used to point data in html form 
 help_form_names = ["import_file","host","port","user","password","database","action_type"]
 
+
+
+#create mysql backup file 
+def create_db_backup_file(filename):
+    open (filename,"w").close()
+    all_data = database.query("SELECT * FROM orders")
+    sql_statment ="INSERT INTO orders  VALUES({},'{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')"
+    f=open (filename,"a")
+    f.write("DROP TABLE  IF EXISTS  orders;\nCREATE TABLE orders(id INT(6) AUTO_INCREMENT PRIMARY KEY ,name VARCHAR(50) CHARSET utf8,address VARCHAR(50) CHARSET utf8,phone VARCHAR(50) CHARSET utf8,cities VARCHAR(50) CHARSET utf8 ,product_type VARCHAR(255) CHARSET utf8,product_link TEXT CHARSET utf8,pic_file  TEXT CHARSET utf8,pic_url  TEXT CHARSET utf8,request_date DATE,end_date DATE ,email	VARCHAR(50) CHARSET utf8,souq_password VARCHAR(50) CHARSET utf8,request_status VARCHAR(50) CHARSET utf8,notes TEXT CHARSET utf8);\n")
+    for i in all_data:
+        row = sql_statment.format(i[0],i[1],i[2],i[3],i[4],i[5],i[6],i[7],i[8],i[9],i[10],i[11],i[12],i[13],i[14])
+        f.write(row+";\n")
+    f.close()
+
+
 #backup database > sql file
 def db_backup():
     'backup database and save it in *.sql file'
-    return system("mysqldump -u root -pcommand ayman > back_up.sql")
-
+    create_db_backup_file(main_path + "Backup_SQL.sql")
 #backup database > html file
 def html_export():
     'export all records in database in one html page as a table'
@@ -492,7 +510,7 @@ def html_export():
     </html>
     """
     res=html.format(query_all,"{border:1px solid black;border-collapse:collapse}","{border:1px solid black;}")
-    f = open("export_html.html","w")
+    f = open(main_path+"export_html.html","w")
     f.write(res)
     f.close()
 
@@ -501,11 +519,19 @@ def extenstion_allowed(filename,allowed_extenstions):
     'check extenstion of file if it in allowed extensions'
     return "." in filename and filename.rsplit(".",1)[1] in allowed_extenstions
 
+#create empty orders table 
+def create_empty_table():
+    database.sql("CREATE TABLE orders(id INT(6) AUTO_INCREMENT PRIMARY KEY ,name VARCHAR(50) CHARSET utf8,address VARCHAR(50) CHARSET utf8,phone VARCHAR(50) CHARSET utf8,cities VARCHAR(50) CHARSET utf8 ,product_type VARCHAR(255) CHARSET utf8,product_link TEXT CHARSET utf8,pic_file  TEXT CHARSET utf8,pic_url  TEXT CHARSET utf8,request_date DATE,end_date DATE ,email	VARCHAR(50) CHARSET utf8,souq_password VARCHAR(50) CHARSET utf8,request_status VARCHAR(50) CHARSET utf8,notes TEXT CHARSET utf8)")
+
 #restore_database
 def restore_database(filename):
     'destory old database and restore it by sql file'
-    system("mysql -u root -pcommand ayman < "+filename)
-    return True
+    with open (filename) as f :
+        commands=f.readlines()
+        for i in commands :
+            database.sql(i.strip())
+            print (i.strip())
+
 
 #destroy data base
 def destroy_database():
