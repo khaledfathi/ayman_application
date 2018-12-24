@@ -22,14 +22,14 @@
 						<label>الاسم <span class="require">*</span></label>
 					</td>
 					<td>
-						<input name="name" type="text" required title="ادخل الاسم">
+						<input name="name" type="text" required title="الحد الاقصى 50 حرف" pattern=".{1,50}">
 					</td>
 					<td>
 						<label>التليفون <span class="require">*</span></label>
 
 					</td>
 					<td>
-						<input name="phone" type="text" required title="ادخل رقم التليفون" placeholder="01234567789">
+						<input name="phone" type="text" required title="ارقام فقط - الحد الاقصى 50 رقم" placeholder="01234567789" pattern="\d{1,50}">
 					</td>
 				<tr>
 
@@ -38,7 +38,7 @@
 						<label>عنوان</label>
 					</td>
 					<td>
-						<input name="address" type="text" title="ادخل العنوان" placeholder="العنوان + اسم المنطقة">
+						<input name="address" type="text" title="الحد الاقصى 255 حرف" placeholder="العنوان + اسم المنطقة" pattern=".{1,255}">
 					</td>
 					<td>
 						<label>محافظة</label>
@@ -46,43 +46,43 @@
 					<td>
 						<select name="cities" id="cities" class="select_cities" title="اختر المحافظة">
 							<option>الإسكندرية</option>
-							<option>الإسماعيلية</option>
 							<option>أسوان</option>
 							<option>أسيوط</option>
 							<option>الأقصر</option>
+							<option>الإسماعيلية</option>
 							<option>البحر الأحمر</option>
-							<option>الغردقة</option>
 							<option>البحيرة</option>
-							<option>دمنهور</option>
-							<option>بني سويف</option>
-							<option>بورسعيد</option>
-							<option>الطور</option>
-							<option>جنوب سيناء</option>
 							<option>الجيزة</option>
-							<option>المنصورة</option>
+							<option>الخارجة</option>
 							<option>الدقهلية</option>
-							<option>دمياط</option>
-							<option>سوهاج</option>
-							<option>السويس</option>
 							<option>الزقازيق</option>
+							<option>السويس</option>
 							<option>الشرقية</option>
+							<option>الطور</option>
 							<option>العريش</option>
-							<option>شمال سيناء</option>
-							<option>طنطا</option>
 							<option>الغربية</option>
+							<option>الغردقة</option>
 							<option>الفيوم</option>
 							<option selected>القاهرة</option>
-							<option>بنها</option>
 							<option>القليوبية</option>
+							<option>المنصورة</option>
+							<option>المنوفية</option>
+							<option>المنيا</option>
+							<option>الوادي الجديد</option>
+							<option>بنها</option>
+							<option>بني سويف</option>
+							<option>بورسعيد</option>
+							<option>جنوب سيناء</option>
+							<option>دمنهور</option>
+							<option>دمياط</option>
+							<option>سوهاج</option>
+							<option>شبين الكوم</option>
+							<option>شمال سيناء</option>
+							<option>طنطا</option>
 							<option>قنا</option>
 							<option>كفر الشيخ</option>
 							<option>مرسى مطروح</option>
 							<option>مطروح</option>
-							<option>شبين الكوم</option>
-							<option>المنوفية</option>
-							<option>المنيا</option>
-							<option>الوادي الجديد</option>
-							<option>الخارجة</option>
 							<option>--اخرى--</option>
 						</select>
 					</td>
@@ -90,7 +90,7 @@
 						<label id="label_other_city" hidden>محافظة اخرى</label>
 					</td>
 					<td>
-						<input name="other_city" id="other_city" type="text" hidden title="ادخل محافظة غير موجودة بقائمة المحافظات">
+						<input name="other_city" id="other_city" type="text" hidden title="الحد الاقصى 50 حرف " pattern=".{0,50}">
 					</td>
 				<tr>
 		</table>
@@ -109,7 +109,7 @@
 				<label>رابط</label>
 				
 				<input name="pic_file" id="pic_file" type="file" hidden>
-				<input name="pic_url" id="pic_url"  type="url" title="صورة المنتج - يجب ان تبدأ " placeholder="https:// or https://">
+				<input name="pic_url" id="pic_url"  type="url" title="ادخل رابط الصورة" placeholder="https:// or https://">
 				<img id="product_image" height="150" width="150">
 			</fieldset>
 			<hr style="margin:20px 0px">
@@ -118,14 +118,18 @@
 			<label>تاريخ التسليم <span class="require">*</span></label>
 			<input name="end_date" type="date" required title="ادخل تاريخ التسليم">
 			<label>البريد الالكترونى <span class="require">*</span></label>
-			<input name="email" type="email" required title="ادخل البريد الالكترونى " placeholder="mail@domain.com">
+			<input name="email" type="email" required title="الحد الاقصى 50 حرف" placeholder="mail@domain.com" pattern=".{0,50}">
 			<label>كلمة السر - سوق <span class="require">*</span></label>
-			<input name="souq_password" type="text" required title="ادخل كلمة سر - سوق" required>
+			<input name="souq_password" type="text" required title="ادخل كلمة سر - سوق" required pattern=".{0,50}">
+			<br><br>
 			<label>حالة التسليم</label>
-			<select name="request_status" title ="اختر حالة التسليم">
+			<select id = "request_status" name="request_status" title ="اختر حالة التسليم">
 				<option>تم التسليم</option>
 				<option selected>متابعة</option>
+				<option>الغاء الطلب</option>
 			</select>
+			<label id="tracking_label">رابط المتابعة <span class="require">*</span></label>
+			<input name ="tracking_link" id="tracking" type ="url" placeholder="http:// or https://" title="ادخل رابط المتابعة" required>
 			<br>
 			<label>ملاحظات</label>
 			<input name="notes" class="notes"  type="text" title ="ادخل اى ملاحظات او تفاصيل اخرى">
