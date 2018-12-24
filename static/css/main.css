@@ -12,10 +12,10 @@ a{
 header {
 	background-color:#af9fcc;
 	padding:1px;
-	height:100px;
+	height:110px;
 	box-shadow:0px 5px 10px black;
 }
-.header_title h1{
+.header_title h1 , .header_title p{
 	text-align:center;
 	color:white;
 	text-shadow:2px 2px 5px black;
@@ -44,6 +44,9 @@ header {
 }
 .man_nav ul li:hover{
 	box-shadow:2px 2px 2px red;
+/*******************************/
+
+/*link logos*/
 }
 .fb_logo{
 	height:70px;
@@ -52,3 +55,21 @@ header {
 	left:20px;
 	top:-20px;
 }
+.souq_logo{
+	height:70px;
+	width:70px;
+	position:absolute;
+	left:100px;
+	top:-20px;
+
+}
+.temp_mail_logo{
+	height:70px;
+	width:70px;
+	position:absolute;
+	left:170px;
+	top:-20px;
+
+}
+
+/****************/

@@ -1,1 +1,10 @@
-
+.index_logo{
+	width:1000px;
+	margin:0px auto ;
+}
+.index_logo img{
+	margin-right:300px;
+}
+.index_logo h4{
+	text-align : center;
+}
