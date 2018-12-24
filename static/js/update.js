@@ -91,3 +91,5 @@ var product_image = document.getElementById("product_image")
 pic_url.onkeyup = function (){
 	product_image.setAttribute("src",pic_url.value);
 }
+
+/*#######################################################*/
