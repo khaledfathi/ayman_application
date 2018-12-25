@@ -86,7 +86,7 @@ main_path=database.config()[5]
 ###################################
 
 #names of html elements - used to point data in html form 
-data_entry_form_names = ["name","address","phone","cities","other_city","product_type","product_link","pic_file","pic_url","request_date","end_date","email","souq_password","request_status","notes"]
+data_entry_form_names = ["name","address","phone","cities","other_city","product_type","product_link","pic_file","pic_url","request_date","end_date","email","souq_password","request_status","tracking_link","notes"]
 
 #save data inro database
 def insert_in_db(data_list):
@@ -96,8 +96,8 @@ def insert_in_db(data_list):
     try :
 
         db=database
-        db.sql("INSERT INTO orders (name,address,phone,cities,product_type,product_link,pic_file,pic_url,request_date,end_date,email,souq_password,request_status,notes) VALUES\
-            ('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')".format\
+        db.sql("INSERT INTO orders (name,address,phone,cities,product_type,product_link,pic_file,pic_url,request_date,end_date,email,souq_password,request_status,tracking_link,notes) VALUES\
+            ('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')".format\
         (data_list["name"],\
         data_list["address"],\
         data_list["phone"],\
@@ -111,6 +111,7 @@ def insert_in_db(data_list):
         data_list["email"],\
         data_list["souq_password"],\
         data_list["request_status"],\
+        data_list["tracking_link"],\
         data_list["notes"]))
         return True
     except Exception as error :
@@ -134,6 +135,7 @@ def return_id (data_list):
     email = '{}' and \
     souq_password= '{}' and \
     request_status = '{}'and \
+    tracking_link = '{}' and \
     notes = '{}'".format\
     (data_list["name"],\
     data_list["address"],\
@@ -144,6 +146,7 @@ def return_id (data_list):
     data_list["pic_file"],\
     data_list["pic_url"],\
     data_list["request_date"],\
+    data_list["tracking_link"],\
     data_list["end_date"],\
     data_list["email"],\
     data_list["souq_password"],\
@@ -389,9 +392,12 @@ def query_to_tabel (query):
         res+="<tr>"
         for n in i :
             if count==6:
-                res+="<td> <a href= '{}' target = 'blank'>اضغط هنا</a></td>".format(n)
+                res+="<td> <a href= '{}' target = '_blank'>اضغط هنا</a></td>".format(n)
             elif count==8:
                 res+="<td> <img src ='{}' alt='No Image' width='150' height='150'></td>".format(n)
+            elif count==14:
+                res+="<td> <a href= '{}' target = '_blank'>اضغط هنا</a> </td>".format(n)
+
             else:
                 res+="<td>"+str(n)+"</td>"
             count+=1
@@ -413,10 +419,10 @@ def query_to_tabel (query):
 ############### for UPDATE Rows #################
 #################################################
 
-update_form_names = ["id","name","address","phone","cities","other_city","product_type","product_link","pic_file","pic_url","request_date","end_date","email","souq_password","request_status","notes"]
+update_form_names = ["id","name","address","phone","cities","other_city","product_type","product_link","pic_file","pic_url","request_date","end_date","email","souq_password","request_status","tracking_link","notes"]
 def update(data_list):
     try :
-        return database.sql("UPDATE orders SET name='{}' , address='{}',phone='{}',cities='{}',product_type='{}',product_link='{}',pic_file='{}',pic_url='{}',request_date='{}',end_date='{}',email='{}',souq_password='{}',request_status='{}',notes='{}' WHERE  id={}".format\
+        return database.sql("UPDATE orders SET name='{}' , address='{}',phone='{}',cities='{}',product_type='{}',product_link='{}',pic_file='{}',pic_url='{}',request_date='{}',end_date='{}',email='{}',souq_password='{}',request_status='{}',tracking_link ='{}',notes='{}' WHERE  id={}".format\
             (data_list["name"],\
             data_list["address"],\
             data_list["phone"],\
@@ -430,6 +436,7 @@ def update(data_list):
             data_list["email"],\
             data_list["souq_password"],\
             data_list["request_status"],\
+            data_list["tracking_link"],\
             data_list["notes"],\
             data_list["id"]))
     except Exception as e:
@@ -447,11 +454,11 @@ help_form_names = ["import_file","host","port","user","password","database","act
 def create_db_backup_file(filename):
     open (filename,"w").close()
     all_data = database.query("SELECT * FROM orders")
-    sql_statment ="INSERT INTO orders  VALUES({},'{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')"
+    sql_statment ="INSERT INTO orders  VALUES({},'{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')"
     f=open (filename,"a")
-    f.write("DROP TABLE  IF EXISTS  orders;\nCREATE TABLE orders(id INT(6) AUTO_INCREMENT PRIMARY KEY ,name VARCHAR(50) CHARSET utf8,address VARCHAR(50) CHARSET utf8,phone VARCHAR(50) CHARSET utf8,cities VARCHAR(50) CHARSET utf8 ,product_type VARCHAR(255) CHARSET utf8,product_link TEXT CHARSET utf8,pic_file  TEXT CHARSET utf8,pic_url  TEXT CHARSET utf8,request_date DATE,end_date DATE ,email	VARCHAR(50) CHARSET utf8,souq_password VARCHAR(50) CHARSET utf8,request_status VARCHAR(50) CHARSET utf8,notes TEXT CHARSET utf8);\n")
+    f.write("DROP TABLE  IF EXISTS  orders;\nCREATE TABLE orders(id INT(6) AUTO_INCREMENT PRIMARY KEY ,name VARCHAR(50) CHARSET utf8,address VARCHAR(255) CHARSET utf8,phone VARCHAR(50) CHARSET utf8,cities VARCHAR(50) CHARSET utf8 ,product_type TEXT CHARSET utf8,product_link TEXT CHARSET utf8,pic_file  TEXT CHARSET utf8,pic_url  TEXT CHARSET utf8,request_date DATE,end_date DATE ,email VARCHAR(50) CHARSET utf8,souq_password VARCHAR(50) CHARSET utf8,request_status VARCHAR(50) CHARSET utf8, tracking_link TEXT CHARSET utf8 ,notes TEXT CHARSET utf8);\n")
     for i in all_data:
-        row = sql_statment.format(i[0],i[1],i[2],i[3],i[4],i[5],i[6],i[7],i[8],i[9],i[10],i[11],i[12],i[13],i[14])
+        row = sql_statment.format(i[0],i[1],i[2],i[3],i[4],i[5],i[6],i[7],i[8],i[9],i[10],i[11],i[12],i[13],i[14],i[15])
         f.write(row+";\n")
     f.close()
 
@@ -502,6 +509,7 @@ def html_export():
                 <td>البريد الالكترونى</td>
                 <td>كلمة السر - سوق</td>
                 <td>حالة الطلب</td>
+                <td>رابط المتابعة</td>
                 <td>ملاحظات</td>
             </tr>
             {0}
@@ -521,7 +529,7 @@ def extenstion_allowed(filename,allowed_extenstions):
 
 #create empty orders table 
 def create_empty_table():
-    database.sql("CREATE TABLE orders(id INT(6) AUTO_INCREMENT PRIMARY KEY ,name VARCHAR(50) CHARSET utf8,address VARCHAR(50) CHARSET utf8,phone VARCHAR(50) CHARSET utf8,cities VARCHAR(50) CHARSET utf8 ,product_type VARCHAR(255) CHARSET utf8,product_link TEXT CHARSET utf8,pic_file  TEXT CHARSET utf8,pic_url  TEXT CHARSET utf8,request_date DATE,end_date DATE ,email	VARCHAR(50) CHARSET utf8,souq_password VARCHAR(50) CHARSET utf8,request_status VARCHAR(50) CHARSET utf8,notes TEXT CHARSET utf8)")
+    database.sql("CREATE TABLE orders(id INT(6) AUTO_INCREMENT PRIMARY KEY ,name VARCHAR(50) CHARSET utf8,address VARCHAR(255) CHARSET utf8,phone VARCHAR(50) CHARSET utf8,cities VARCHAR(50) CHARSET utf8 ,product_type TEXT CHARSET utf8,product_link TEXT CHARSET utf8,pic_file  TEXT CHARSET utf8,pic_url  TEXT CHARSET utf8,request_date DATE,end_date DATE ,email	VARCHAR(50) CHARSET utf8,souq_password VARCHAR(50) CHARSET utf8,request_status VARCHAR(50) CHARSET utf8,tracking_link TEXT CHARSET utf8,notes TEXT CHARSET utf8)")
 
 #restore_database
 def restore_database(filename):
